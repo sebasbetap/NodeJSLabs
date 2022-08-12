@@ -1,0 +1,15 @@
+{
+  "name": "3lvivo",
+  "version": "1.0.0",
+  "description": "Proyecto modulo nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon server.js"
+  },
+  "author": "Juan Sebastian Betancur Posada",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  }
+}
