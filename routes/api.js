@@ -11,8 +11,16 @@ api.get('/', WelcomeController.bienvenido);
 api.get('/alumnos', AlumnosController.alumnos);
 api.get('/alumno/:n_lista', AlumnosController.alumno);
 api.post('/alumno', [
+    body('n_cuenta').not().isEmpty(),
+    body('nombre').not().isEmpty(),
+    body('edad').not().isEmpty(),
     body('genero').not().isEmpty()
 ], AlumnosController.crear_alumno);
-// api.put('/alumnos:n_cuenta', AlumnosController.list_alumnos);
+
+api.put('/alumno/:n_cuenta', [
+    body('nombre').not().isEmpty(),
+    body('edad').not().isEmpty(),
+    body('genero').not().isEmpty()
+], AlumnosController.update_alumno);
 
 module.exports = api;
