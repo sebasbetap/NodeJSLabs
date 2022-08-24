@@ -1,6 +1,6 @@
 'use strict'
 
-var controller = {
+let controller = {
     bienvenido: function(req, res){
         return res.status(200).json({
             status: 200,
