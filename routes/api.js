@@ -23,4 +23,7 @@ api.put('/alumno/:n_cuenta', [
     body('genero').not().isEmpty()
 ], AlumnosController.update_alumno);
 
+api.delete('/alumno/:n_lista', AlumnosController.delete_alumno);
+
+
 module.exports = api;

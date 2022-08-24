@@ -86,7 +86,7 @@ let controller = {
             genero : update_alumno.genero,
         };
 
-        Alumnos.findOneAndUpdate({n_cuenta:n_cuenta}, update_data, {new:false}, (err, updateAlumno) => {
+        Alumnos.findOneAndUpdate({n_cuenta:n_cuenta}, update_data, {new:true}, (err, updateAlumno) => {
             if(err) return res.status(500).json({message:"Error en el proceso de actualización"});
             if(!updateAlumno) return res.status(200).json({message:"No existe el alumno."})
 
@@ -97,7 +97,24 @@ let controller = {
         });
     },
 
-    // delete_alumno: function(req, res) {
+    delete_alumno: function(req, res) {
+        const errors = validationResult(req);
+        if(!errors.isEmpty()){
+            return res.status(400).json({errors: errors.array()});
+        }
+
+        let n_lista = req.params.n_lista;
+        
+        Alumnos.findOneAndRemove({n_cuenta: n_lista}, (err, alumnoDelete) => {
+                if(err) return res.status(500).json({status: 500, message: "Error al eliminar"});
+                if(!alumnoDelete) return res.status(200).json({status: 200, message:"No existe el alumno."});
+
+                return res.status(200).json({
+                    status:200,
+                    message: "Alumno eliminado",
+                });
+            });
+    }
 
 }
 
